@@ -1,4 +1,4 @@
-#N canvas 140 57 1163 693 10;
+#N canvas 126 66 1163 693 10;
 #X obj 201 201 cnv 15 298 93 empty empty \$1 3 8 0 12 -232576 -45076
 0;
 #X obj 197 339 nbx 5 14 0 99 0 0 empty \$0-N empty 0 -8 0 10 -203904
@@ -32,7 +32,7 @@
 -1 -45076;
 #X msg 310 488 set \$1;
 #X obj 266 587 hsl 128 15 -100 100 0 0 empty empty empty -2 -8 0 10
--262144 -1 -1 0 1;
+-262144 -1 -1 6350 1;
 #N canvas 1090 86 350 309 antideadlock 0;
 #X obj 30 47 inlet;
 #X obj 195 48 inlet;
@@ -169,30 +169,32 @@
 #X obj 1030 453 prepend;
 #X obj 1030 429 openpanel;
 #X obj 882 429 savepanel;
-#X obj 882 452 prepend;
-#X msg 882 503 \; \$1 write \$2;
-#X obj 882 479 prepend list;
+#X obj 865 455 prepend;
+#X msg 865 503 \; \$1 write \$2;
+#X obj 865 479 prepend list;
 #X obj 1030 477 prepend list;
 #X msg 1030 502 \; \$1 read \$2;
-#N canvas 122 339 505 435 credits 0;
+#N canvas 149 359 492 382 credits 0;
 #X text 17 87 License: CC BY;
-#X text 17 50 (C) LATM - Laboratory of Audio and Music Technologies
-- USP 2013-2021;
 #X text 18 20 REACTIVE - Sound processors library for reactive musical
-applications;
+applications, f 69;
 #X text 17 129 History:;
 #X text 80 129 datatrack (data recorder and player);
 #X text 80 145 created from progcurve (Programmable Curve) v.2.6 14/06/18
 ;
-#X text 20 248 To do:;
+#X text 20 281 To do:;
 #X text 80 164 datatrack.pd v.1 (23/abr/2018);
-#X text 72 267 initial point \; final point \;;
+#X text 76 302 initial point \; final point \;;
 #X text 79 183 v.1 (01/set/2022) includes: ways to resize the array
 (graph object contains the \$1-data array) \; to resize the range of
 counting to permit to swipe the new array size \;;
-#X text 73 249 parameters yet to make available for external addressing:
+#X text 77 283 parameters yet to make available for external addressing:
 ;
-#X restore 1074 624 pd credits;
+#X text 17 50 (C) LATM - Laboratory of Audio and Music Technologies
+- USP 2013-2021 \, 2025, f 69;
+#X text 78 235 bug in "save" and "load" schemes solved correcting the
+way prepend from iemlib is used (06/08/25) \;;
+#X restore 1035 624 pd credits;
 #X obj 713 240 +;
 #X obj 687 209 * 60;
 #X obj 684 240 +;
@@ -459,7 +461,7 @@ por este outlet;
 #X msg 510 317 0;
 #X floatatom 79 520 5 0 0 0 - - -;
 #X obj 940 192 symbol -data;
-#X text 933 453 NAME-data FILE;
+#X text 926 454 NAME-data FILE;
 #X obj 248 564 tabread \$1-data;
 #X obj 48 585 tabwrite \$1-data;
 #X obj 525 506 symbol;
@@ -472,7 +474,6 @@ por este outlet;
 #X obj 736 464 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 736 442 r \$1-save;
-#X msg 895 357 set \$1;
 #X text 1 59 Use: datatrack NAME;
 #X text 1 90 Addressable parameters:;
 #X text 587 160 Enter min:sec:ms below to set a speed;
@@ -493,7 +494,6 @@ por este outlet;
 -1 -1 0 1;
 #X obj 296 657 nbx 5 14 0 535 0 0 empty \$0-yourname empty 0 -8 0 10
 -203904 -1 -1 0 256;
-#X text 992 655 REACTIVE (C) LATM - 2022;
 #X text 607 8 Usage;
 #X text 608 78 2) The default range for swiping the array when playing
 it is from start to its end \, i.e. from 0 to N \, but you can choose
@@ -524,6 +524,8 @@ to +100., f 87;
 #X msg 1030 163 99;
 #X obj 914 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
+#X msg 895 357 \$1;
+#X text 981 657 REACTIVE (C) LATM - 2022-2025;
 #X connect 1 0 16 0;
 #X connect 1 0 23 0;
 #X connect 3 0 79 0;
@@ -544,7 +546,7 @@ to +100., f 87;
 #X connect 18 0 12 1;
 #X connect 19 0 5 0;
 #X connect 20 0 7 0;
-#X connect 22 0 153 0;
+#X connect 22 0 152 0;
 #X connect 22 1 5 0;
 #X connect 23 0 1 0;
 #X connect 23 1 6 0;
@@ -557,7 +559,7 @@ to +100., f 87;
 #X connect 28 0 32 0;
 #X connect 29 0 28 0;
 #X connect 30 0 77 0;
-#X connect 34 0 153 0;
+#X connect 34 0 152 0;
 #X connect 35 0 41 0;
 #X connect 37 0 54 0;
 #X connect 39 0 53 0;
@@ -566,16 +568,15 @@ to +100., f 87;
 #X connect 41 0 139 1;
 #X connect 42 0 131 0;
 #X connect 43 0 51 0;
-#X connect 43 0 178 0;
 #X connect 44 0 35 0;
 #X connect 44 0 42 0;
 #X connect 46 0 43 0;
-#X connect 46 0 172 1;
+#X connect 46 0 170 1;
 #X connect 47 0 46 0;
 #X connect 48 0 90 0;
 #X connect 49 0 13 0;
 #X connect 51 0 45 0;
-#X connect 51 0 142 0;
+#X connect 51 0 177 0;
 #X connect 52 0 58 0;
 #X connect 53 0 52 0;
 #X connect 54 0 55 0;
@@ -645,36 +646,36 @@ to +100., f 87;
 #X connect 133 0 4 0;
 #X connect 133 0 2 0;
 #X connect 133 0 21 0;
-#X connect 135 0 151 0;
+#X connect 135 0 150 0;
 #X connect 136 0 135 0;
 #X connect 137 0 35 0;
 #X connect 138 0 136 0;
-#X connect 139 0 150 0;
+#X connect 139 0 149 0;
 #X connect 140 0 139 0;
 #X connect 141 0 140 0;
-#X connect 142 0 55 0;
-#X connect 142 0 52 0;
-#X connect 146 0 148 0;
-#X connect 148 0 150 1;
-#X connect 148 0 151 1;
-#X connect 150 0 149 0;
-#X connect 151 0 147 0;
-#X connect 153 0 22 0;
-#X connect 153 0 20 0;
-#X connect 153 0 7 4;
-#X connect 154 0 98 1;
-#X connect 163 0 168 0;
-#X connect 164 0 165 0;
-#X connect 165 0 155 0;
-#X connect 165 0 171 0;
-#X connect 166 0 172 0;
-#X connect 166 0 176 0;
-#X connect 167 0 169 0;
-#X connect 167 0 175 0;
-#X connect 168 0 166 0;
-#X connect 172 0 173 0;
+#X connect 145 0 147 0;
+#X connect 147 0 149 1;
+#X connect 147 0 150 1;
+#X connect 149 0 148 0;
+#X connect 150 0 146 0;
+#X connect 152 0 22 0;
+#X connect 152 0 20 0;
+#X connect 152 0 7 4;
+#X connect 153 0 98 1;
+#X connect 161 0 166 0;
+#X connect 162 0 163 0;
+#X connect 163 0 154 0;
+#X connect 163 0 169 0;
+#X connect 164 0 170 0;
+#X connect 164 0 174 0;
+#X connect 165 0 167 0;
+#X connect 165 0 173 0;
+#X connect 166 0 164 0;
+#X connect 170 0 171 0;
+#X connect 174 0 173 0;
+#X connect 174 2 165 0;
+#X connect 175 0 164 0;
 #X connect 176 0 175 0;
-#X connect 176 2 167 0;
-#X connect 177 0 166 0;
-#X connect 178 0 177 0;
+#X connect 177 0 55 1;
+#X connect 177 0 52 1;
 #X coords 0 -1 1 1 300 95 1 200 200;
